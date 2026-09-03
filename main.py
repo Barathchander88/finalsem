@@ -1,13 +1,20 @@
+import os
+import pickle
+
 import streamlit as st
 from PIL import Image
-import pickle
+
 model = pickle.load(open('model1.pkl', 'rb'))
+
+BANNER = 'photo6077737573108788560.jpg'
 
 
 def run():
-    img1 = Image.open('bank.png')
-    img1 = img1.resize((180, 180))
-    st.image(img1, use_column_width=False)
+    # The banner is decoration; a missing file should not take the app down.
+    if os.path.exists(BANNER):
+        img1 = Image.open(BANNER)
+        img1 = img1.resize((180, 180))
+        st.image(img1, width=180)
 
 
     new_title = '<p style="font-family:sans-serif; color:Orange; font-size: 20px;">State Bank Of India</p>'
